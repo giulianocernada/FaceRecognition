@@ -92,43 +92,25 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
-  //     if (response){
-  //       fetch('https://dry-garden-23376.herokuapp.com/image', {
-  //         method: 'put',
-  //         headers: {'Content-type': 'application/json'},
-  //         body: JSON.stringify({
-  //         id: this.state.user.id
-  //         })
-  //       })
-  //       .then(response => response.json())
-  //       .then(count => {
-  //         this.setState(Object.assign(this.state.user, { entries: count }))
-  //       })
-  //       .catch(console.log)
-  //     }
-  //     this.displayFaceBox(this.calculateFaceLocation(response))
-  //   })
-  //   .catch(err => console.log(err));
-  // }
-  if (response) {
-          fetch('https://dry-garden-23376.herokuapp.com/image', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              id: this.state.user.id
-            })
+      if (response){
+        fetch('https://dry-garden-23376.herokuapp.com/image', {
+          method: 'put',
+          headers: {'Content-type': 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id
           })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count}))
-            })
-            .catch(console.log)
-
-        }
-        this.displayFaceBox(this.calculateFaceLocation(response))
-      })
-      .catch(err => console.log(err));
+        })
+        .then(response => response.json())
+        .then(count => {
+          this.setState(Object.assign(this.state.user, { entries: count }))
+        })
+        .catch(console.log)
+      }
+      this.displayFaceBox(this.calculateFaceLocation(response))
+    })
+    .catch(err => console.log(err));
   }
+
 
   onRouteChange = (route) => {
     if (route === 'signOut') {
