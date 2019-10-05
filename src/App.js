@@ -7,12 +7,7 @@ import SignIn from './Components/SignIn/SignIn'
 import Register from './Components/Register/Register'
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import './App.css';
-
-const app = new Clarifai.App({
- apiKey: '3e2d7785146f42a081685cd04886140c'
-});
 
 const particlesOptions = {
 	particles: {
@@ -88,13 +83,17 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input})
-    app.models
-    .predict(
-      Clarifai.FACE_DETECT_MODEL,
-      this.state.input)
+    fetch('https://dry-garden-23376.herokuapp.com/imageurl', {
+          method: 'post',
+          headers: {'Content-type': 'application/json'},
+          body: JSON.stringify({
+            input: this.state.input
+          })
+    })
+    .then(response => response.json())
     .then(response => {
       if (response){
-        fetch('http://localhost:3000/image', {
+        fetch('https://dry-garden-23376.herokuapp.com:3000/image', {
           method: 'put',
           headers: {'Content-type': 'application/json'},
           body: JSON.stringify({
