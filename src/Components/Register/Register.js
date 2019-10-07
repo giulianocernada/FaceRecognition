@@ -22,7 +22,7 @@ class Register extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('https://dry-garden-23376.herokuapp.com/register', {
+		fetch('https://localhost:3000/register', {
 			method: 'post',
 			headers: {'Content-type': 'application/json'},
 			body: JSON.stringify({
